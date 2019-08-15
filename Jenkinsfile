@@ -10,7 +10,7 @@ node {
    }
    
     stage('Sonar Publish'){
-	   withCredentials([string(credentialsId: 'in.javahome:myweb', variable: '2eb06222bb03d10888effb538d6c35a044eccb14')]) {
+	   withCredentials([string(credentialsId: 'admin', variable: 'admin')]) {
          def sonarToken = "sonar.login=${sonarToken}"
          sh "${mvnHOME}/bin/mvn sonar:sonar -D${sonarUrl}  -D${sonarToken}"
 	   }
