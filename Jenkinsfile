@@ -10,7 +10,7 @@ node {
    }
    
     stage('Sonar Publish'){
-	   withCredentials([string(credentialsId: 'jenkins', variable: '2eb06222bb03d10888effb538d6c35a044eccb14')]) {
+	   withCredentials([string(credentialsId: 'token', variable: '2eb06222bb03d10888effb538d6c35a044eccb14')]) {
          def sonarToken = "sonar.login=${sonarToken}"
          sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
 	   }
