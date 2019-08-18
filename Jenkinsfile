@@ -8,11 +8,10 @@ node {
    
    sh "${mvnHOME}/bin/mvn package"
    }
-   stage('Sonar Publish'){
-	withCredentials([string(credentialsId: 'in.javahome:myweb', variable: 'e6403fa307f62b4e1d5dcfabf374029d1d9fd5ed')]) {
-                def sonarToken = "sonar.login=${sonarToken}"
-                sh "${mvnHOME}/bin/mvn sonar:sonar -D${sonarUrl}  -D${sonarToken}"
-	 }
-   }	   
+   stage('SonarQube analysis') {
+     withSonarQubeEnv(credentialsId: 'e6403fa307f62b4e1d5dcfabf374029d1d9fd5ed', installationName: 'http://34.234.178.68:9000') {
+      sh '${mvnHOME}/bin/mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
+    }
+  }	   
 
 }
