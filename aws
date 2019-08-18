@@ -11,15 +11,15 @@ node {
          echo "installing docker ............"
          sh "echo 'Host 34.204.2.87' > ~/.ssh/config"
          sh "echo '   StrictHostKeyChecking no' > ~/.ssh/config"
-         sh "ssh -t ubuntu@34.204.2.87 <<'SSH_EOF'"
-         sudo apt-get update
-         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-         sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-         sudo apt-get update
-         sudo apt-get install -y docker-ce
-         sudo usermod -aG docker ubuntu
-         exit
-   sh "SSH_EOF"
+         //sh "ssh -t ubuntu@34.204.2.87 <<'SSH_EOF'"
+         sh "ssh ubuntu@34.204.2.87 sudo apt-get update"
+         sh "ssh ubuntu@34.204.2.87 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+         sh 'ssh ubuntu@34.204.2.87 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
+         sh "ssh ubuntu@34.204.2.87 sudo apt-get update"
+         sh "ssh ubuntu@34.204.2.87 "sudo apt-get install -y docker-ce"
+         sh "ssh ubuntu@34.204.2.87 sudo usermod -aG docker ubuntu"
+         //exit
+   //sh "SSH_EOF"
       }
   
    
