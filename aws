@@ -1,0 +1,26 @@
+
+node {
+   def cli = '13.233.247.113'
+   def ins = '34.204.2.87'
+   def sonarUrl = 'sonar.host.url=http://34.234.178.68:9000'
+   def mvnHOME = tool name: 'maven-3', type: 'maven'	   
+   
+   stage('Deploy to Tomcat'){
+      sshagent(['tomcat-dev']) {         
+         # install docker
+         echo "installing docker ............"
+         sh "echo 'Host 34.204.2.87' > ~/.ssh/config"
+         sh "echo '   StrictHostKeyChecking no' > ~/.ssh/config"
+         sh "ssh -t ubuntu@34.204.2.87 <<'SSH_EOF'"
+         sudo apt-get update
+         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+         sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+         sudo apt-get update
+         sudo apt-get install -y docker-ce
+         sudo usermod -aG docker ubuntu
+         exit
+   sh "SSH_EOF"
+      }
+  
+   
+}
