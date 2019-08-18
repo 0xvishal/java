@@ -8,10 +8,4 @@ node {
    
    sh "${mvnHOME}/bin/mvn package"
    }
-   stage('SonarQube analysis') {
-     withSonarQubeEnv(credentialsId: 'e6403fa307f62b4e1d5dcfabf374029d1d9fd5ed', installationName: 'http://34.234.178.68:9000') {
-      sh '${mvnHOME}/bin/mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
-    }
-  }	   
-
 }
