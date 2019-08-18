@@ -8,10 +8,10 @@ node {
    
    sh "${mvnHOME}/bin/mvn package"
    }
-   
-    stage('Sonar Publish'){
-
-	 sh "${mvnHOME}/bin/mvn sonar:sonar -Dsonar.projectKey=in.javahome:myweb -Dsonar.host.url=http://34.234.178.68:9000 -Dsonar.login=e6403fa307f62b4e1d5dcfabf374029d1d9fd5ed" 
-   }
+   stage('Sonar Publish'){
+	withCredentials([string(credentialsId: 'in.javahome:myweb', variable: 'e6403fa307f62b4e1d5dcfabf374029d1d9fd5ed')]) {
+        def sonarToken = "sonar.login=${sonarToken}"
+        sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
+	 }	
 
 }
