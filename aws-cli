@@ -1,5 +1,6 @@
 
 node {
+   def cl1 = 'I_ID=$(aws ec2 run-instances --image-id ami-0cfee17793b08a293 --count 1 --instance-type t2.micro --key-name vpn-test --security-groups web | grep InstanceId | awk -F" "  '{print $2}' | awk -F'"' '{print $2}')'
    def cli = '13.233.247.113'
    def P_IP = ''
    def ins = '34.204.2.87'   
@@ -11,6 +12,7 @@ node {
            sh """ssh -o StrictHostKeyChecking=no -tt ubuntu@$cli << EOF 
               ## creating aws Instance
                 echo "sudo apt-get update" >> outfile.txt 
+                echo $cl1 >> outfile.txt
               exit
            EOF"""
          }
