@@ -1,7 +1,7 @@
 
 node {
    def cli = '13.233.247.113'
-   def ip = ''
+   def P_IP = ''
    def ins = '34.204.2.87'   
    stage('Install Docker'){
       sshagent(['tomcat-dev']) {  
@@ -10,7 +10,14 @@ node {
          {
            sh """ssh -o StrictHostKeyChecking=no -tt ubuntu@$cli << EOF 
               sudo apt-get update
-              touch jenkins_pipline
+              # creating aws Instance
+                echo "Creating a ubuntu-16.04 instance in us-east-1 ........"
+                I_ID=$(aws ec2 run-instances --image-id ami-0cfee17793b08a293 --count 1 --instance-type t2.micro --key-name vpn-test --security-groups web | grep InstanceId | awk -F" "  '{print $2}' | awk -F'"' '{print $2}')
+                sleep 180
+                echo "ec2 instance created instance-id: $I_ID"
+              # find the public IP of created Instance
+                P_IP=$(aws ec2 describe-instances --instance-ids $I_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+                echo $P_IP
               exit
            EOF"""
          }
