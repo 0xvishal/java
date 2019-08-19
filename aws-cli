@@ -13,6 +13,7 @@ node {
               cat > outfile.txt <<EOF
                sudo apt-get update
                # this is file
+               exit
               EOF 
               
               exit
