@@ -8,7 +8,7 @@ node {
          //sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.204.2.87:/var/lib/tomcat8/webapps/ROOT/'
          script 
          {
-           sh """ssh -o StrictHostKeyChecking=no -tt ubuntu@34.204.2.87 << EOF 
+           sh """ssh -o StrictHostKeyChecking=no -tt ubuntu@$ins << EOF 
               sudo apt-get update
               exit
            EOF"""
