@@ -2,6 +2,7 @@
 node {
    def cli = '13.233.247.113'
    def ins = '34.204.2.87'
+   def doc = 'sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
    def sonarUrl = 'sonar.host.url=http://34.234.178.68:9000'
    def mvnHOME = tool name: 'maven-3', type: 'maven'	   
    
@@ -14,7 +15,7 @@ node {
          //sh "ssh -t ubuntu@34.204.2.87 <<'SSH_EOF'"
          sh "ssh ubuntu@34.204.2.87 sudo apt-get update"
          sh "ssh ubuntu@34.204.2.87 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -'"
-         sh 'ssh ubuntu@34.204.2.87 sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu\"'
+         sh 'ssh ubuntu@34.204.2.87 $doc"
 
          //sh "ssh ubuntu@34.204.2.87 sudo apt-get update"
          //sh "ssh ubuntu@34.204.2.87 sudo apt-get install -y docker-ce"
