@@ -4,7 +4,9 @@ node {
    def ip = ''
    def ins = '34.204.2.87'   
    stage('Install Docker'){
-      sshagent(['tomcat-dev']) {         
+      sshagent(['tomcat-dev']) {  
+         sh '-o StrictHostKeyChecking=no ubuntu@34.204.2.87'
+         //sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.204.2.87:/var/lib/tomcat8/webapps/ROOT/'
          script 
          {
            sh """ssh -tt ubuntu@34.204.2.87 << EOF 
