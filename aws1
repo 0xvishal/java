@@ -11,6 +11,7 @@ node {
          {
            sh """ssh -tt ubuntu@34.204.2.87 << EOF 
               sudo apt-get update
+              exit
            EOF"""
          }
         
