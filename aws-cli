@@ -10,12 +10,12 @@ node {
          {
            sh """ssh -o StrictHostKeyChecking=no -tt ubuntu@$cli << EOF 
               ## creating aws Instance
-              cat > outfile.txt <<EOFG
-               sudo apt-get update
-               # this is file
-             
-              EOFG 
-              
+              cat > test.php <<PHP
+                   <?php
+                    echo "Test";
+                    echo \$var;
+                    ?>
+                   PHP 
               exit
            EOF"""
          }
