@@ -1,12 +1,8 @@
 node {
    def cli = '13.233.247.113'
-   def ins = '34.204.2.87'
-   def sonarUrl = 'sonar.host.url=http://34.234.178.68:9000'
-   def mvnHOME = tool name: 'maven-3', type: 'maven'	   
-   
-   stage('Deploy to Tomcat'){
+   def ins = '34.204.2.87'   
+   stage('Install Docker'){
       sshagent(['tomcat-dev']) {         
-         // install docker
          script 
          {
            sh """ssh -tt ubuntu@34.204.2.87 << EOF 
