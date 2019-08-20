@@ -12,6 +12,7 @@ node {
            sh """ssh -o StrictHostKeyChecking=no -tt ubuntu@$cli << EOF 
               ## creating aws Instance
               echo $COMM >> outfile.txt 
+              INS=eval "$COMM"
               exit
            EOF"""
          }
