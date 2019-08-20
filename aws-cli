@@ -10,10 +10,12 @@ node {
          script 
          {
            sh """ssh -o StrictHostKeyChecking=no -tt ubuntu@$cli << EOF 
-              ## creating aws Instance
-                        bash '''#!/bin/bash
+               steps {
+         bash '''#!/bin/bash
                  echo "hello world" 
-                       '''
+         '''
+    }
+          
               exit
            EOF"""
          }
