@@ -12,6 +12,8 @@ node {
            sh """ssh -o StrictHostKeyChecking=no -tt ubuntu@$cli << EOF 
              #!/bin/bash
              echo "Hello"
+             INS=$COMM
+             echo $INS
               exit
            EOF"""
          }
