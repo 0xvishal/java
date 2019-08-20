@@ -10,12 +10,8 @@ node {
          script 
          {
            sh """ssh -o StrictHostKeyChecking=no -tt ubuntu@$cli << EOF 
-               steps {
-         bash '''#!/bin/bash
-                 echo "hello world" 
-         '''
-    }
-          
+             #!/bin/bash
+             echo "Hello"
               exit
            EOF"""
          }
