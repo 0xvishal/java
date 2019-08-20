@@ -14,7 +14,7 @@ node {
               echo $COMM >> outfile.txt 
               #QWE=eval $COMM
               #echo $QWE
-              INS=bash $COMM
+              INS= bash $COMM
               echo $INS
               exit
            EOF"""
