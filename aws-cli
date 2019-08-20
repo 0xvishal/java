@@ -13,6 +13,7 @@ node {
               ## creating aws Instance
               echo $COMM >> outfile.txt 
               INS=eval $COMM
+              echo $INS
               exit
            EOF"""
          }
