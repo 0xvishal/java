@@ -11,11 +11,9 @@ node {
          {
            sh """ssh -o StrictHostKeyChecking=no -tt ubuntu@$cli << EOF 
               ## creating aws Instance
-              echo $COMM >> outfile.txt 
-              #QWE=eval $COMM
-              #echo $QWE
-              INS= bash $COMM
-              echo $INS
+                        bash '''#!/bin/bash
+                 echo "hello world" 
+                       '''
               exit
            EOF"""
          }
